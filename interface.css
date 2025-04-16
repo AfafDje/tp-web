@@ -1,129 +1,422 @@
-*
- {
-  font-family: "Dancing Script", serif;
-  font-optical-sizing: auto;
-  user-select:none;
-  scroll-behavior:smooth;
-  font-size:30px;
- -webkit-user-select: none;
- }
-body
- {
- font-family: Arial, sans-serif;
- }
- 
- nav
- {
-  display:flex;
-  position:fixed;
-  align-items:center;
-  justify-content:space-around;
-  height:70px;
-  background-color: rgba(250, 252, 249, 0.534);;
-  -webkit-backdrop-filter:blur(3px);
-  backdrop-filter:blur(30px);
-  z-index:1;
-  width:100%;
- }
- .logo{
+/* تحسين الإعدادات العامة وإعادة الضبط */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Montserrat", sans-serif;
+  user-select: none;
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #f8f9fa;
+  font-size: 20px;
+  padding-bottom: 80px;
+}
+
+/* الشريط العلوي والملاحة */
+nav {
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  align-items: center;
+  justify-content: space-between;
+  height: 70px;
+  width: 100%;
+  background-color: rgba(250, 252, 249, 0.8);
+  backdrop-filter: blur(10px);
+  padding: 0 50px;
+  z-index: 100;
+}
+.sub-nav {
+  position: fixed;
+  top: 60px; /* يوضع مباشرة تحت الشريط الأول */
+  left: 0;
+  width: 100%;
+  height: 40px;
+  background: #219150;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 18px;
+  z-index: 999;
+}
+.logo {
   display: flex;
   align-items: center;
   text-decoration: none;
- }
- i{
-  font-size: 30px;
-  color: #27ae60;
- }
- .logo h3{
-  color: #239e56;
-  font-size: 30px;
- 
- }
-.nav a
- {
-  text-decoration:none;
-  color:#27ae60;
-  padding: 10px;
-  text-align: center;
-  margin:20px;
-  padding:13px;
-  transition:all 0.1s ease;
- }
-  .nav a:hover
-   {
-  border:none;
-  background-color:#219150;
-  color:#fafcfa;
-  border-radius: 50px;
-   }
- .homepage
-{
- background:url(imag/r.jpg);
- background-size:cover;
- background-repeat: no-repeat;
- background-position:center;
- background-attachment:fixed;
- height: 100%;
- width:100%;
- align-items: center;
- display: flex;
-}
-.content{
-  margin-left:50px ;
-}
-.content h2{
-  font-size: 50px;
-}
-.content h1{
-  color: #27ae60 ;
-  font-size: 100px;
-  margin: 30px 0;
-  text-shadow:0 0 100px  #27ae60;
-}
-.content button{
-    margin-top: 10px;
-    height:70px ;
-    width:190px ;
-    border:none ;
-    background-color: #27ae60 ;
-    color:antiquewhite;
-    border-radius:40px ;
-    font-size:20px ;
-    font-weight: 1000px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-.content button:hover{
-  box-shadow:0 10px 50px 5px #27ae60;
-}
-section{
-  padding:100px 100px;
-  }
-.icons {
-    display: flex;
-    gap: 20px;
-    margin: 30px;
-    align-items: center;
 }
 
-.cart-icon, .wishlist-icon, .user-icon {
-    position: relative;
+.logo i {
+  font-size: 30px;
+  color: #27ae60;
+  margin-right: 10px;
+}
+
+.logo h1 {
+  color: #239e56;
+  font-size: 24px;
+}
+
+.nav {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  padding: 15px;
+  justify-content: center;
+}
+.nav li {
+  position: relative;
+}
+.nav a {
+  text-decoration: none;
+  color: #27ae60;
+  padding: 10px 15px;
+  border-radius: 20px;
+  transition: 0.3s ease;
+}
+
+.nav a:hover {
+  background-color: #219150;
+  color: #fff;
+}
+  /* القائمة المنسدلة */
+  .dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 150%; /* مباشرة أسفل "Categories" */
+    left: 0;
+    width: 150px;
+    border-radius: 10px;
+    overflow: hidden;
+    z-index: 10;
+
+}
+
+.dropdown-menu a {
+    color: #000;
+    padding: 10px;
+    display: block;
+    text-align: center;
+    transition: 0.3s ease;
+}
+
+.dropdown-menu a:hover {
+    background: #27ae60;
+    color: white;
+}
+
+/* إظهار القائمة عند النقر */
+.dropdown-menu.show {
+    display: block;
+}
+.search {
+  display: flex;
+  align-items: center;
+}
+
+.search .input {
+  background-color: rgba(250, 252, 249, 0.8);
+  border: 0;
+  font-size: 16px;
+  color: #000;
+  padding: 10px;
+  height: 40px;
+  width: 40px;
+  transition: width 0.5s ease;
+  border-radius: 25px;
+  outline: none;
+}
+
+.search.active .input {
+  width: 200px; /* توسع عند النقر */
+}
+
+.search button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  margin-left: -35px;
+}
+.social-links {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 5px;
+  display: inline-flex;
+  gap: 15px;
+}
+
+
+.social-links a {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content:center;
+  align-items: center;
+  border-radius: 50%;
+  text-decoration: none;
+  transition: 0.3s;
+  font-size: 30px;
+}
+
+
+/* الصفحة الرئيسية */
+.homepage {
+  background: url("imag/r.jpg") center/cover no-repeat fixed;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  padding-left: 100px;
+}
+
+.content h2 {
+  font-size: 40px;
+}
+
+.content h1 {
+  color: #27ae60;
+  font-size: 80px;
+  margin: 20px 0;
+  text-shadow: 0 0 10px #27ae60;
+}
+
+.content h3 {
+  font-size: 30px;
+}
+
+.content button {
+  margin-top: 10px;
+  height: 50px;
+  width: 160px;
+  border: none;
+  background-color: #27ae60;
+  color: #fff;
+  border-radius: 40px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.content button:hover {
+  box-shadow: 0 5px 20px rgba(39, 174, 96, 0.5);
+}
+
+/* الأقسام */
+section {
+  padding: 50px 20px;
+}
+
+/* رأس كل قسم */
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto 20px auto;
+}
+
+.section-header h1 {
+  font-size: 32px;
+  color: #333;
+}
+
+.section-header button {
+  border: none;
+  background: transparent;
+  color: #27ae60;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+/* ترتيب بطاقات الكتب أفقيًا باستخدام Flexbox */
+.books-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* بطاقة الكتاب */
+.book {
+  background: #fff;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: transform 0.3s ease;
+  position: relative;
+  width: 100%;
+  max-width: 250px;
+}
+
+.book:hover {
+  transform: scale(1.05);
+}
+
+.book img {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+}
+
+.book h2 {
+  margin: 5px 0;
+  font-size: 20px;
+  color: #333;
+}
+
+.book .price {
+  color: #f8562d;
+  font-size: 18px;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+/* أزرار بطاقة الكتاب */
+.book button {
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+  margin: 5px;
+}
+
+.book .wishlist {
+  font-size: 30px;
+  background: transparent;
+  color: #f8562d;
+}
+
+.book .cart {
+  background: #27ae60;
+  color: #fff;
+}
+
+.book .cart:hover {
+  background: #219150;
+}
+
+/* تنسيق حاوية الفئات باستخدام Grid */
+.categories-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* بطاقة الفئة */
+.category {
+  background: transparent;
+  padding: 5px;
+  border-radius: 10px;
+  text-align: center;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+  position: relative;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.category:hover {
+  transform: scale(1.05);
+}
+
+.category img {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  transition: transform 0.3s ease;
+}
+
+.category:hover img {
+  transform: scale(1.1);
+}
+
+.category h3 {
+  margin-top: 10px;
+  font-size: 18px;
+  color: #333;
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+}
+
+/* قسم "About Us" */
+.section-header header h1 {
+  color: #333;
+  font-size: 2rem;
+}
+
+.section-header h2 {
+  margin: 20px 0;
+}
+
+.section-header p {
+  font-size: 1.1rem;
+  color: #555;
+  line-height: 1.6;
+  max-width: 800px;
+  margin: 10px auto;
+}
+
+/* الفوتر الموحد مع روابط التواصل الاجتماعي */
+footer {
+  bottom:0;
+  left: 0;
+  right: 0;
+  background-color: #219150;;
+  padding: 10px 0;
+  text-align: center;
+  box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+}
+
+.footer-container p {
+  font-size: 14px;
+  color: #000;
+  margin: 5px 0 0;
+}
+
+
+
+@media (max-width: 768px) {
+  nav {
+    flex-direction: column;
+    padding: 10px;
+  }
+  
+  .nav {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+  
+  .homepage {
+    padding-left: 20px;
+    height: 70vh;
+  }
+  
+  .content h1 {
+    font-size: 50px;
+  }
+  
+  .content h2 {
     font-size: 30px;
-    cursor: pointer;
-    align-items: center;
-}
-.div{
-animation: slider 60s linear infinite;
-background-size:cover;
-width: 500px;
-height: 500px;
-position: absolute;
-top:20%;
-left: 60%;
-transform: 0.3s ease;
-}
-@keyframes slider{
-0%{ background-image: url(imag/book1.jpg);}
-50%{ background-image: url(imag/book3.jpg);}
-100%{background-image: url(imag/boob4.jpg);}
+  }
+  
+  /* تعديل حجم بطاقة الكتب لتناسب الشاشات الصغيرة */
+  .book {
+    max-width: 90%;
+  }
+  
+  /* تقليل الهوامش في الحاويات */
+  .books-container, .categories-container {
+    gap: 15px;
+    padding: 0 10px;
+  }
 }
